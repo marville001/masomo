@@ -1,0 +1,148 @@
+*,
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  transition: color 0.3s ease;
+}
+
+:root {
+  --primaryColor: #fff;
+  --secondaryColor: rgb(220, 20, 60);
+  --grayLightColor: #f4f4f7;
+  --grayDarkColor: #e8eaf6;
+}
+
+body {
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a,
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+.flex {
+  display: flex;
+}
+
+.flex-ja {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-j {
+  display: flex;
+  justify-content: center;
+}
+.flex-a {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+
+/* header */
+header {
+  background-color: rgb(12, 87, 92);
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.u-name{
+  color: var(--secondaryColor);
+  margin-right: 15px;font-size: 20px;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.brand-name {
+  margin-left: 20px;
+  font-size: 20px;
+  color: #fff;
+}
+.brand-name:hover {
+  color: #fff;
+}
+
+.logactions{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.logactions a:first-child{
+  padding: 0 10px;
+  color: var(--secondaryColor);
+}.logactions a:last-child{
+  background-color: var(--secondaryColor);height: 100%;display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: #fff;
+}
+
+.ac {
+  font-size: 12px;
+  margin-bottom: 0.5rem;
+}
+
+/* choose account */
+.acc-container {
+  display: flex;
+  justify-content: center;
+}
+.acc-content {
+  border: 1px solid #eee;
+  margin: 10px 10px;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+/* Login */
+.form-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-container {
+  border: 1px solid #eee;
+  margin-top: 30px;
+  width: 480px; 
+}
+
+.form-header {
+  background-color: #eee;
+  padding: 10px 20px;
+}
+.form-header h3{
+  font-size: 18px;
+  font-weight: bold;
+}
+.form-container form{
+  padding: 10px 10px;
+}
+
+.btnlogin {
+  border: 1px solid #ced4da;
+  background-color: var(--secondaryColor);
+  min-width: 120px;
+  color: #fff;
+}
+.error{
+  font-size: 12px;
+}
