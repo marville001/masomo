@@ -14,6 +14,9 @@
 
    $examres = mysqli_query($db, "select * from exam_category where classid = $_GET[classid]");
    $examrows = mysqli_num_rows($examres);
+
+   $uexamres = mysqli_query($db, "select * from exam_upload where classid = $_GET[classid]");
+   $uexamrows = mysqli_num_rows($uexamres);
 ?>
 
 <div style="margin: 0px; padding:0px; margin-bottom: 50px;">
@@ -28,7 +31,7 @@
         </div>
         <div class="row p-3 bg-light">
             <div class="col-12 col-lg-8 mb-4">
-                <h2>Exams</h2>
+                <h2>Multiple Questions Exams</h2>
                 <table  class="table table-striped">
                     <thead>
                         <tr>
@@ -53,7 +56,7 @@
                                 <? if ($erows>0) {
                                     ?>
                                         <td>
-                                            <a href="" class="btn btn-disbled">Exam done</a>
+                                            <a href="" class="btn btn-disabled">Exam done</a>
                                         </td>
                                     <?
                                 } else {
@@ -63,6 +66,33 @@
                                             <a onclick="hello()" href="classes.php?classid=<?php echo $_GET["classid"]?>&examid=<?php echo $rows["id"]?>" class="btn btn-success text-white">Start</a>
                                         </td>
                                 <? }?>
+                            </tr>
+                        <?php }}?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 col-lg-8 mb-4">
+                <h2>Upload Exams</h2>
+                <table  class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php if($uexamrows<=0){?>
+                    <?php  } else {
+                            while($rows = mysqli_fetch_array($uexamres)){        
+                            ?> 
+                            <tr>
+                                <th scope="row"><?php echo $rows["id"]?></th>
+                                <td><?php echo $rows["title"]?></td>
+                                <td><?php echo $rows["description"]?></td>
+                                <td> <a href="exam.php?classid=<?php echo $_GET['classid']?>&examid=<?php echo $rows["id"]?>">View</a></td>
+                                
                             </tr>
                         <?php }}?>
                     </tbody>
@@ -125,14 +155,5 @@
     <?php  } ?>
 </div>
 
-<!-- <script>
-    const startExam = (examid)=>{
-        let href = `classes.php?classid=<?php echo $_GET["classid"]?>&examid=${examid}`;
-        const confirm_start = window.confirm("Note that if you leave without trying all questions will lead to a zero scroe on those quetions\n\nContinue?")
-        if(confirm_start){
-            // window.location.replace(href)
-        }
-    }
-</script> -->
 
         

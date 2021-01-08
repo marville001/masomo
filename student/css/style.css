@@ -140,3 +140,7 @@ ul {
 .quizcounter{
   font-size: 15px;
 }
+
+.hover-underline:hover{
+  text-decoration: underline;
+}

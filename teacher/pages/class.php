@@ -27,6 +27,7 @@
               <!-- CArd Body -->
                 <div class="card-body">
                     <!-- Add Exam Catogory -->
+                    <h2 style="margin:20px 16px">Multiple Questions Exam</h2>
                     <form action="" method="post">
                         <div class="col-lg-5">
                             <div class="card">
@@ -49,7 +50,9 @@
                                         <input 
                                         type="submit" 
                                         name="add-exam-submit" class="btn btn-success" value="Add Exam">
-                                    </div>                                
+                                    </div> 
+                                    <h5 class="text-center m-3">Or</h5>      
+                                    <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#uploadexam">Upload Exam</button>                         
                                 </div>                                
                             </div>                                
                         </div>
@@ -93,8 +96,43 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <!-- <div class="card"> -->
+                                <div class="card-body">
+                                    <h4 class="mb-2 bold">Uploaded Exams</h4>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Exam Title</th>
+                                                <th scope="col">Exam File</th>
+                                                <th scope="col">attempts</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            <?php
+                                                $count=0;
+                                                $res = mysqli_query($db,"select * from exam_upload where classid = '$classid' ") or die(mysqli_error($db));
+                                                while( $row= mysqli_fetch_array($res)){
+                                                    $count+=1;?>
+                                                        <td><?php echo $count; ?></td>
+                                                        <td><?php echo $row['title']; ?></td>
+                                                        <td><?php echo $row['file']; ?></td>
+                                                        <td>20</td>
+                                                        <td><a href="exam_edit.php?id=<?php echo $row['id']; ?>">View</a></td>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <!-- </div>   -->
                         </div>
                     </div>
+
                     <!-- End Table -->
                     <div class="col-lg-12">
                         <div class="card">
@@ -131,7 +169,7 @@
                                     <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#modalToupload">Upload Revision Material</button>  
                                 </div>                            
                             </div>                                
-                        </div>                                
+                        </div>                                                   
                     </div>
 
 
@@ -187,6 +225,44 @@
                   ?>
                     <script type="text/javascript">
                         alert("File Uploaded Successfully...");
+                    </script>   
+                <?php
+              }
+          } else {
+              ?>
+                    <script type="text/javascript">
+                        alert("Failed to Upload file...try again later");
+                    </script>   
+                <?php
+          }
+      }
+  }
+?>
+
+<?php
+    if(isset($_POST['examuploadsubmit'])){
+      $examfilename = $_FILES['examfile']['name'];
+      $examtitle =$_POST['examtitle'];
+      $examdescription =$_POST['examdescription'];
+      $examdestination = '../uploads/' . $examfilename;
+        // get the file extension
+      $extension = pathinfo($examfilename, PATHINFO_EXTENSION);
+
+      // the physical file on a temporary uploads directory on the server
+      $file = $_FILES['examfile']['tmp_name'];
+      $size = $_FILES['examfile']['size'];
+
+      if (!in_array($extension, ['pdf', 'docx'])) {
+          echo "<script>alert('You file extension must be .pdf or .docx')</script>";
+      } else {
+          // move the uploaded (temporary) file to the specified destination
+          if (move_uploaded_file($file, $examdestination)) {
+              $sql = "INSERT INTO exam_upload (title,file, description,classid) VALUES ('$examtitle','$examfilename', '$examdescription','$_GET[classid]')";
+              $queried = mysqli_query($db, $sql) or die(mysqli_error($db));
+              if ($queried) {
+                  ?>
+                    <script type="text/javascript">
+                        alert("Exam Uploaded Successfully...");
                     </script>   
                 <?php
               }
