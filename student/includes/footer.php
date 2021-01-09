@@ -1,5 +1,5 @@
     <div class="d-flex justify-content-center">
-        <p>Masomo - Copyright © 2019 | Vaati.</p>
+        <p>Masomo - Copyright © <?php echo date("Y");?> | Vaati.</p>
     </div>
 </div>
 

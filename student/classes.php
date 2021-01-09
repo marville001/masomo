@@ -9,7 +9,11 @@
 <?php
    if(isset($_GET['classid'])){   
         if(isset($_GET['examid'])){
-            include("pages/examsession.php");   
+            if(isset($_GET['mult']) && $_GET['mult']=="true"){
+                include("pages/multresults.php");   
+            }else{
+                include("pages/examsession.php");             
+            }
         }else{
             include("pages/class.php");        
        }

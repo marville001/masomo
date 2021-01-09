@@ -144,3 +144,22 @@ ul {
 .hover-underline:hover{
   text-decoration: underline;
 }
+
+.teachers-comment{
+  background-color: #a7c3d8;
+  color: #fff;
+  padding: 20px;
+}
+
+.teachers-comment h6{
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 20px;
+  color: #000;
+}
+
+.teachers-comment p{
+  color: rgba(0,0,0,.8);
+  font-size: 15px;
+  font-weight: 300;
+}

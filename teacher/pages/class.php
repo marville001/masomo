@@ -74,12 +74,15 @@
                                             <th scope="col">Exam Time</th>
                                             <th scope="col">Edit</th>
                                             <th scope="col">Delete</th>
+                                            <th scope="col">Attempts</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                             $count=0;
                                             $res = mysqli_query($db,"select * from exam_category where classid = '$classid' ") or die(mysqli_error($db));
+                                            
                                             while( $row= mysqli_fetch_array($res)){
                                                 $count+=1;?>
                                                 <tr>
@@ -88,6 +91,13 @@
                                                     <td><?php echo $row['time']; ?></td>
                                                     <td><a href="exam_edit.php?id=<?php echo $row['id']; ?>">Edit</a></td>
                                                     <td><a href="exam_delete.php?id=<?php echo $row['id']; ?>">Delete</a></td>
+                                                    <?php
+                                                        $answerresults = mysqli_query($db,"select distinct uname from answers where exam_id = '$row[id]' ") or die(mysqli_error($db));
+                                                        $answersrows = mysqli_num_rows($answerresults);
+                                                        
+                                                    ?>
+                                                    <td><?php echo $answersrows; ?></td>
+                                                    <td><a href="results.php?classid=<?php echo $_GET['classid']; ?>&examid=<?php echo $row['id']; ?>&mult=true">View</a></td>
                                                 </tr>
                                                 <?php
                                             }
@@ -96,7 +106,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- <div class="card"> -->
                                 <div class="card-body">
                                     <h4 class="mb-2 bold">Uploaded Exams</h4>
                                     <table class="table table-bordered">
@@ -120,7 +129,7 @@
                                                         <td><?php echo $row['title']; ?></td>
                                                         <td><?php echo $row['file']; ?></td>
                                                         <td>20</td>
-                                                        <td><a href="exam_edit.php?id=<?php echo $row['id']; ?>">View</a></td>
+                                                        <td><a href="results.php?classid=<?php echo $_GET['classid']; ?>&examid=<?php echo $row['id']; ?>">View</a></td>
                                                     <?php
                                                 }
                                                 ?>
@@ -129,11 +138,11 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            <!-- </div>   -->
                         </div>
                     </div>
-
                     <!-- End Table -->
+
+                    <!-- Revision Material Table -->
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header"><strong>Revision Materials</strong></div>

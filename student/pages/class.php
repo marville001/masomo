@@ -39,7 +39,7 @@
                         <th scope="col">Title</th>
                         <th scope="col">Time</th>
                         <th scope="col">State</th>
-                        <th scope="col"></th>
+                        <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,14 +53,12 @@
                                 <th scope="row"><?php echo $rows["id"]?></th>
                                 <td><?php echo $rows["title"]?></td>
                                 <td><?php echo $rows["time"]?></td>
-                                <? if ($erows>0) {
-                                    ?>
+                                <? if ($erows>0) {?>
+                                        <td>Exam done </td>
                                         <td>
-                                            <a href="" class="btn btn-disabled">Exam done</a>
+                                            <a href="classes.php?classid=<?php echo $_GET["classid"]?>&examid=<?php echo $rows["id"]?>&mult=true" class="btn text-success">View Result</a>
                                         </td>
-                                    <?
-                                } else {
-                                    ?>
+                                <?}else {?>
                                         <td> Not Started</td>
                                         <td>
                                             <a onclick="hello()" href="classes.php?classid=<?php echo $_GET["classid"]?>&examid=<?php echo $rows["id"]?>" class="btn btn-success text-white">Start</a>
@@ -116,7 +114,7 @@
             <div class="col-12 col-sm-6 col-md-6 ">
                 <div class="list-group">
                     <h4 href="#" class="list-group-item list-group-item-action bg-success text-white">
-                        Revision material
+                        Revision Documents
                     </h4>
                     <table class="table table-bordered">
                         <thead>

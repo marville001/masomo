@@ -12,7 +12,7 @@
    $lecres = mysqli_query($db, "select * from teachers where id = '$class[lecid]'");
    $leccarray = mysqli_fetch_array($lecres);
 
-   $uexamres = mysqli_query($db, "select * from exam_upload where classid = $_GET[classid]");
+   $uexamres = mysqli_query($db, "select * from exam_category where classid = $_GET[classid]");
    $uexamrows = mysqli_num_rows($uexamres);
    $examarray = mysqli_fetch_array($uexamres);
 ?>
@@ -30,40 +30,17 @@
         <div class="row p-3">
             <div class="col-12 col-md-8 col-lg-6">
                 <div class="card">
-                <div class="card-header bg-success text-white"><strong> <?php echo $examarray["title"];?></strong></div>
-                <div class="card-body">
-                    <p><strong>Description: </strong> <?php echo $examarray["description"];?></p>
-                    
-                    
+                    <div class="card-header bg-success text-white"><strong> <?php echo $examarray["title"];?></strong></div>
+                    <div class="card-body">
+                        <p><strong>Description: </strong> <?php echo $examarray["description"];?></p>
+                        <h5><strong>Score: </strong><span class="text-success"> 20/39</score></h5>
 
-                    <div>
-                    <?php
-                        $checkres = mysqli_query($db, "select * from exam_upload_answers where exam_id = $_GET[examid] and classid = $_GET[classid] ");
-                        $checkows = mysqli_num_rows($checkres);
-                        $answerarray = mysqli_fetch_array($checkres);
-                        if($checkows>0):
-                    ?>
-                        <p>Answer Already Uploaded</p> 
-                        <h4>Score: <?php if($answerarray['score']>0){echo $answerarray['score'];}else{echo "Not yet Marked";}?></h4>
-                        <div class="jumbotron" style="padding:10px; margin-bottom:10px">
-                            Uploaded File: <a class="hover-underline" href="../answeruploads/<?php echo $answerarray['file'] ?>"><?php echo $answerarray['file'] ?></a>
-                        </div>
-                        <?php if($answerarray['teachers_comment'] != ""): ?>
+                        
                         <div class="teachers-comment">
                             <h6>Teachers Comment</h6>
-                            <p>"<i><?php echo $answerarray['teachers_comment'] ; ?></i>"</p>
+                            <p>"<i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est reiciendis a et!</i>"</p>
                         </div>
-                        <? endif ?>
-                    <?php else: ?>
-                        <h5>Download the exam here</h5>
-                        <div class="jumbotron" style="padding:10px; margin-bottom:10px">
-                            <a class="hover-underline" href="../uploads/<?php echo $examarray['file'] ?>"><?php echo $examarray['file'] ?></a>                        
-                        </div>
-                        <p class="m-3">Note: The exam should be done and submitted within the given time</p>
-                        <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#uploadexamanswer">Upload Your answer</button>
-                    <?php endif?>
                     </div>
-                </div>
                 </div>
             </div>               
         </div>
