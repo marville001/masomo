@@ -43,35 +43,59 @@
                 <p class="px-5"><?php echo $examsarray['description'] ?></p>  
                 <hr>
                 <?php if($diff_days == 0):?>
-                <? echo $examsarray['type']; ?>
                     <?php if($examsarray['type'] == "upload"):?>        
                         <div class="p-3">
                             <a href="/masomo/uploads/<?php echo $quiz['file'] ?>" class="btn btn-outline-success">Download File</a>
                             <p class="mt-2  ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quae et commodi.</p>
                         </div>    
                         <div class="jumbotron m-2 p-4">
-                        <?php
-                            $answwercheckresult = mysqli_query($db, "select * from answers_upload where uname='$suname' and classid=$_GET[classid] and exam_id=$_GET[examid]");
-                            $answwercheckrows = mysqli_num_rows($answwercheckresult);
-                            if($answwercheckrows < 1):
-                        ?>
-                            <button data-toggle="modal" data-target="#submitExamModal" class="btn btn-primary">Submit Answers</button>
-                        <?php else:
-                            $answwercheckarray = mysqli_fetch_array($answwercheckresult);                            
-                        ?>
-                        <h4>Answers submitted</h4>
-                        <h6>Date : <?php echo $answwercheckarray['time'] ?></h6>
-                        <h4>Score : <span class="text-success"><?php if($answwercheckarray['score'] != null){echo $answwercheckarray['score'];}else{echo "No score yet";} ?></span></h4>
-                        <h4 class="mt-4">Teachers Comment</h4>
-                        <p><span class="text-dark"><?php if($answwercheckarray['teachers_comment'] != null){echo "<i>\"".$answwercheckarray['teachers_comment']."\"</i>";}else{echo "No Comment yet";} ?></span></p>
+                            <?php
+                                $answwercheckresult = mysqli_query($db, "select * from answers_upload where uname='$suname' and classid=$_GET[classid] and exam_id=$_GET[examid]");
+                                $answwercheckrows = mysqli_num_rows($answwercheckresult);
+                                if($answwercheckrows < 1):
+                            ?>
+                                <button data-toggle="modal" data-target="#submitExamModal" class="btn btn-primary">Submit Answers</button>
+                            <?php else:?>
+                            <?php
+                                $answwercheckarray = mysqli_fetch_array($answwercheckresult);                            
+                            ?>
+                            <h4>Answers submitted</h4>
+                            <h6>Date : <?php echo $answwercheckarray['time'] ?></h6>
+                            <h4>Score : 
+                                <span class="text-success">
+                                    <?php 
+                                        if($answwercheckarray['score'] != null){
+                                            echo $answwercheckarray['score'];
+                                        }else{
+                                            echo "No score yet";
+                                        } 
+                                    ?>
+                                </span>
+                            </h4>
+                            <h4 class="mt-4">Teachers Comment</h4>
+                            <p>
+                                <span class="text-dark">
+                                <?php 
+                                    if($answwercheckarray['teachers_comment'] != null){
+                                        echo "<i>\"".$answwercheckarray['teachers_comment']."\"</i>";
+                                    }else{
+                                        echo "No Comment yet";
+                                    } 
+                                    ?>
+                                </span>
+                            </p>
+                        </div>  
+                        <?php endif?>
+                    <?php else:
+                        $multquizres = mysqli_query($db, "select * from questions where examid=$_GET[examid]");
+                        $multquizrows = mysqli_num_rows($multquizres);    
+                    ?>
+                        <h6>There are <? echo $multquizrows ?> questions in this test</h6>
+                        <button class="btn btn-outline-success my-3">Start  Exam</button>
                     <?php endif?>
-                    <?php if($examsarray['type'] == "multiple"):?>
-                        <h4>Where </h4>
-                        <h5>Multiple</h5>
-                    <?php endif?>
-                 <?php endif?>
+                 
 
-                    </div>  
+                    
                 <?php elseif($diff_days < 0):?>
                     <h3>Timed Out</h3>              
                 <?php else:?>

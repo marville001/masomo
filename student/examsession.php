@@ -2,9 +2,10 @@
 <?php include 'includes/header2.php'; ?>
 
 <?php
+    session_start();
     $suname = $_SESSION['username'];
     $examid = $_GET["examid"];
-    $examresult = mysqli_query($db, "select * from exam_category where id=$examid");
+    $examresult = mysqli_query($db, "select * from exams where id=$examid");
     $examrows = mysqli_num_rows($examresult); 
     $exams= mysqli_fetch_array($examresult);
 
@@ -63,7 +64,7 @@
 ?>
 
 <div class="timer">
-    <h3><?php echo $exams["title"]?></h3>
+    <h3><?php echo $exams["name"]?></h3>
 </div>
 <div class="exam-container">
     <?php
@@ -71,7 +72,7 @@
     ?>
         <div class="exam-content">
             <h3>The exam has a total of 20 questions</h3>
-            <a href="classes.php?classid=<?php echo $_GET["classid"]?>&examid=<?php echo $exams["id"]?>&quizno=1" class="btn btn-outline-success m-5">Start Answering</a>
+            <a href="examsession.php?classid=<?php echo $_GET["classid"]?>&examid=<?php echo $exams["id"]?>&quizno=1" class="btn btn-outline-success m-5">Start Answering</a>
         </div>
     <?php 
         else:
