@@ -12,10 +12,10 @@ include "includes/header2.php";
 include "includes/config.php";
 
 $id = $_GET["id"];
-$res = mysqli_query($db, "select * from exam_category where id='$id' ") or die(mysqli_error($db));
+$res = mysqli_query($db, "select * from exams where id='$id' ") or die(mysqli_error($db));
 while($row = mysqli_fetch_array($res)){
-    $exam_time = $row['time'];
-    $exam_title = $row['title'];
+    $exam_date = $row['date'];
+    $exam_name = $row['name'];
     $exam_description = $row['description'];
 } 
 ?> 
@@ -24,7 +24,7 @@ while($row = mysqli_fetch_array($res)){
     <div class="col-sm-4">
         <div class="page-header float-left">
         <div class="page-title">
-            <h1>Edit Exam --- <?php echo $exam_title ?></h1>
+            <h1>Edit Exam --- <?php echo $exam_name ?></h1>
         </div>
         </div>
     </div>
@@ -45,12 +45,12 @@ while($row = mysqli_fetch_array($res)){
                                     <div class="card-header"><strong>Edit Exam</strong></div>
                                     <div class="card-body card-block">                                        
                                         <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Exam Title</label>
-                                            <input required type="text"  value="<?php echo $exam_title ?>" placeholder="Exam Title" name="examtitle" class="form-control">
+                                            <label for="vat" class=" form-control-label">Exam Name</label>
+                                            <input required type="text"  value="<?php echo $exam_name ?>" placeholder="Exam Title" name="examname" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Exam Time In Minutes</label>
-                                            <input required type="text" value="<?php echo $exam_time ?>" placeholder="Exam Time In Minutes" name="examtime" class="form-control">
+                                            <label for="vat" class=" form-control-label">Exam Date</label>
+                                            <input required type="date" value="<?php echo $exam_date ?>" placeholder="Exam Date" name="examdate" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="vat" class=" form-control-label">Exam Description</label>
@@ -76,7 +76,7 @@ while($row = mysqli_fetch_array($res)){
 
 <?php
     if(isset($_POST['update-category-submit'])){
-        mysqli_query($db, "Update exam_category set time='$_POST[examtime]', title='$_POST[examtitle]', description='$_POST[examdescription]' where id='$id' ") or die(mysqli_error($db));
+        mysqli_query($db, "Update exams set date='$_POST[examdate]', name='$_POST[examname]', description='$_POST[examdescription]' where id='$id' ") or die(mysqli_error($db));
         ?>
             <script type="text/javascript">
                 window.location.href = "classes.php?classid=<?php echo $_SESSION['classid']; ?>";

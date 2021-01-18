@@ -2,7 +2,7 @@
 session_start();
 include 'includes/config.php';
 $id = $_GET['id'];
-mysqli_query($db, "delete from exam_category where id = '$id' ");
+mysqli_query($db, "delete from exams where id = '$id' ");
 ?>
 
 <script type="text/javascript">

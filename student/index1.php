@@ -11,9 +11,9 @@
 ?>
 
 <?php include 'includes/header2.php'; ?>
-<div class="row" style="margin: 0px; padding:0px; margin-bottom: 0px;background-color:#eee;min-height:85vh;">   
+<div class="row" style="margin: 0px; padding:0px; margin-bottom: 50px;">   
     <div class="col col-12">
-        <div style="background-color:white;padding:10px 20px;display:flex;justify-content:space-between;padding-right:50px;">
+        <div style="background-color:white;padding:5px 20px;display:flex;justify-content:space-between;padding-right:50px;">
             <div>
                 <h3>All Classes</h3>
                 <h5><?php echo $jcrows ?> joined <?php if($jcrows=1){echo "class";}else {

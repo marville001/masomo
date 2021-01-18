@@ -26,23 +26,29 @@
   </div> 
 </div>
 
-
-<!-- <div class="modal fade" id="joinClassModal" tabindex="-1" role="dialog" aria-labelledby="joinClassModalLabel" aria-hidden="true">
+<!-- Submit Exam Answers Modal-->
+<div class="modal fade" id="submitExamModal" tabindex="-1" role="dialog" aria-labelledby="submitExamModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="joinClassModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="submitExamModalLabel">Upload Answers Document</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      <form action="" method="POST" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Document</label>
+            <input required type="file" name="examanswers" style="height:60px;padding:12px; 20px"    class="form-control"/>
+          </div>
+          <p>NB: You cannot submit another document</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" name="submitExamAnswers" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
     </div>
   </div>
-</div> -->
+</div>

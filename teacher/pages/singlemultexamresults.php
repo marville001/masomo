@@ -28,7 +28,6 @@
                     <div class="card-header"><h2><strong><?php echo $multexamarray['title'] ?> Results</strong></h2>
                     <!-- CArd Body -->
                     <div class="card-body bg-white my-2">
-
                         <div>
                             <h2>Student Name: <b><?php echo $studentarray['firstname']. " " . $studentarray['lastname']?></b></h2>
                             <h3 class="mb-1 mt-3">Score <span><strong><?php echo $answerzrows. " / " . $quizrows ?></strong></span></h3>

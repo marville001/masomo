@@ -1,10 +1,59 @@
+<!-- Modal For Add Exam -->
+<div class="modal fade" id="addexammodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+   <form class="refreshFrm" id="addQuestionFrm" method="post">
+     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Exam</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="refreshFrm" method="post" id="addQuestionFrm">
+      <div class="modal-body">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Exam Name</label>
+            <input required type="text" name="examname" class="form-control" placeholder="Enter exam name" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label>Exam Date</label>
+            <input required type="date" name="examdate" class="form-control" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label>Exam Type</label>
+            <select required name="examtype" class="form-control">
+              <option value="">Select Exam Type</option>
+              <option value="multiple">Multiple Questions</option>
+              <option value="upload">Uploaded Exam</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Exam Description</label>
+            <textarea required name="examdescription" class="form-control" placeholder="Enter Exam Descrition..."></textarea>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="addexamsubmit" class="btn btn-primary">Add Exam</button>
+      </div>
+      </form>
+    </div>
+   </form>
+  </div>
+</div>
+
+
+
 <!-- Modal For Add Question -->
 <div class="modal fade" id="modalForAddQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
    <form class="refreshFrm" id="addQuestionFrm" method="post">
      <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Question for <br><?php echo $exam_title; ?></h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Question for <br><?php echo $exam_name; ?></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -73,7 +122,11 @@
       <form class="refreshFrm" method="post" id="addClassFrm">
       <div class="modal-body">
         <div class="col-md-12">
-        <div class="form-group">
+          <div class="form-group">
+            <label>Class Code</label>
+            <input required type="text" name="classcode" id="class_name" class="form-control" placeholder="Enter class code..." autocomplete="off">
+          </div>
+          <div class="form-group">
             <label>Class Name</label>
             <input required type="text" name="classname" id="class_name" class="form-control" placeholder="Enter class name..." autocomplete="off">
           </div>
@@ -144,12 +197,8 @@
             <input required type="file" name="examfile" style="height:60px;padding:12px; 20px"  class="form-control">
           </div>
           <div class="form-group">
-            <label>Exam Title</label>
-            <input required type="text" name="examtitle" class="form-control" placeholder="Enter Exam Title..."/>
-          </div>
-          <div class="form-group">
-            <label>Exam Description</label>
-            <textarea required name="examdescription" class="form-control" placeholder="Enter Exam Descrition..."></textarea>
+            <label>Exam Instruction</label>
+            <textarea required name="examinstructions" class="form-control" placeholder="Enter Exam Descritions..."></textarea>
           </div>
         </div>
       </div>

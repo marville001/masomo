@@ -69,7 +69,7 @@ include "includes/config.php";
 <?php
   if(isset($_POST['addClassSubmit'])){ 
     $joincode = uniqid();     
-      mysqli_query($db, "INSERT INTO classes (`name`,`description` ,`lecid`,`joincode` ) VALUES ('$_POST[classname]','$_POST[classdescription]','$lecid','$joincode') ") or die(mysqli_error($db));
+      mysqli_query($db, "INSERT INTO classes (`name`,`code`,`description` ,`lecid`,`joincode` ) VALUES ('$_POST[classname]','$_POST[classcode]','$_POST[classdescription]','$lecid','$joincode') ") or die(mysqli_error($db));
       ?>
           <script type="text/javascript">
               alert("Class created Successfully")

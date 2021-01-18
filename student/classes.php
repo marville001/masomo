@@ -15,7 +15,7 @@
                 include("pages/examsession.php");             
             }
         }else{
-            include("pages/class.php");        
+            include("pages/class1.php");        
        }
    }else{
         include("pages/allclasses.php");

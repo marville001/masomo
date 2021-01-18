@@ -12,7 +12,7 @@
    $lecres = mysqli_query($db, "select * from teachers where id = '$class[lecid]'");
    $leccarray = mysqli_fetch_array($lecres);
 
-   $uexamres = mysqli_query($db, "select * from exam_category where classid = $_GET[classid]");
+   $uexamres = mysqli_query($db, "select * from exam_category where id = $_GET[examid]");
    $uexamrows = mysqli_num_rows($uexamres);
    $examarray = mysqli_fetch_array($uexamres);
 ?>
@@ -33,9 +33,7 @@
                     <div class="card-header bg-success text-white"><strong> <?php echo $examarray["title"];?></strong></div>
                     <div class="card-body">
                         <p><strong>Description: </strong> <?php echo $examarray["description"];?></p>
-                        <h5><strong>Score: </strong><span class="text-success"> 20/39</score></h5>
-
-                        
+                        <h5><strong>Score: </strong><span class="text-success"> 20/39</score></h5>                        
                         <div class="teachers-comment">
                             <h6>Teachers Comment</h6>
                             <p>"<i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est reiciendis a et!</i>"</p>
