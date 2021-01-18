@@ -44,7 +44,7 @@
                         <td><?php echo $examsarray['name'] ?></td>
                         <td><?php echo $examsarray['type'] ?></td>
                         <td><?php echo $examsarray['date'] ?></td>
-                        <td><a target="_blank" href="exams.php?classid=<?php echo $_GET['classid'];?>&examid=<?php echo $examsarray['id'] ?>">View</a></td>
+                        <td><a href="exams.php?classid=<?php echo $_GET['classid'];?>&examid=<?php echo $examsarray['id'] ?>">View</a></td>
                     </tr>
                     <?php }}else{?>
                         <tr><td colspan=4>No exam found</td></tr>

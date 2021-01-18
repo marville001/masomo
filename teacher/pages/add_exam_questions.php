@@ -21,7 +21,11 @@ if(isset($_SESSION['lecid'])){
     $qrows = mysqli_num_rows($qres);
 
     $uploadquestionsres = mysqli_query($db, "select * from questions_upload where examid ='$examid' order by id asc")or die(mysqli_error($db));
-    $uploadquestionsrows = mysqli_num_rows($uploadquestionsres);  
+    $uploadquestionsrows = mysqli_num_rows($uploadquestionsres);   
+    
+    // Check if students have started answering questions
+    $examsessionres = mysqli_query($db, "select * from examsession where exam_id ='$examid' ")or die(mysqli_error($db));
+    $examsessionrows = mysqli_num_rows($examsessionres);
        
 
 
@@ -83,9 +87,13 @@ if(isset($_SESSION['lecid'])){
                                         <span class="badge badge-primary ml-3"><?php echo $qrows?></span>
                                         <?php } ?>
                                     </div>
-                                    <div class="col col-2">
+                                    <div class="col col-4">
                                         <?php if($exam_type == 'multiple'): ?>
-                                            <button data-toggle="modal" data-target="#modalForAddQuestion" class="btn btn-primary">Add Question</button>  
+                                            <?php if($examsessionrows <1): ?>
+                                                <button data-toggle="modal" data-target="#modalForAddQuestion" class="btn btn-primary">Add Question</button>  
+                                            <?php else: ?>
+                                                <p>Cannot add more questions</p>                                      
+                                            <?php endif?>                                      
                                         <?php else:?>                                      
                                             <?php if($uploadquestionsrows > 0): ?>                                      
                                                 <button data-toggle="modal" disabled data-target="#uploadexam" class="btn btn-primary">Upload Questions</button>

@@ -4,7 +4,15 @@
 <?php
     session_start();
     $suname = $_SESSION['username'];
-    $examid = $_GET["examid"];
+    if(isset($_GET["examid"])){
+        $examid = $_GET["examid"];
+    }else{
+        ?>
+            <script type="text/javascript">
+                window.location.href = "exams.php?classid=<? echo $_GET['classid']?>";
+            </script>
+        <?php
+    }
     $examresult = mysqli_query($db, "select * from exams where id=$examid");
     $examrows = mysqli_num_rows($examresult); 
     $exams= mysqli_fetch_array($examresult);
@@ -30,7 +38,7 @@
     if ($erows>0) {
         ?>
             <script type="text/javascript">
-                alert("Seems you have already done the exam...visit the result page to see your result")
+                alert("All questions have been answered")
                 window.location.href = window.location.href.split("&examid")[0];
             </script>
         <?php
@@ -118,24 +126,34 @@
         } else {
             $correct = 0;
         }
+        $answerresult = mysqli_query($db, "select * from answers where exam_id = '$examid' and quiz_no = '$quizno' and uname = '$suname'");
+        $answerrows = mysqli_num_rows($answerresult);
         
-        mysqli_query($db, "INSERT INTO answers VALUES (NULL, '$examid','$quizno','$suname','$answer','$correct') ") or die(mysqli_error($db));
-        if ($quiz["question_no"] < $quizesrow) {
+        if($answerrows>=1){
             ?>
                 <script type="text/javascript">
-                    let path = window.location.pathname;
-                    let searchArray = window.location.search.split("quizno=");
-                    let quizno = (parseInt(searchArray[1]))+1
-                    window.location.href = path+searchArray[0]+"quizno="+quizno;
+                    alert("You have already submitted an answer to this question")
                 </script>
             <?php
-        } else {
-            mysqli_query($db, "INSERT INTO examsession VALUES (NULL,'$suname', '$examid','done') ") or die(mysqli_error($db));
-            ?>
-                <script type="text/javascript">
-                    window.location.href = "results.php";
-                </script>
-            <?php
+        }else{
+            mysqli_query($db, "INSERT INTO answers VALUES (NULL, '$examid','$quizno','$suname','$answer','$correct') ") or die(mysqli_error($db));        
+            if ($quiz["question_no"] < $quizesrow) {
+                ?>
+                    <script type="text/javascript">
+                        let path = window.location.pathname;
+                        let searchArray = window.location.search.split("quizno=");
+                        let quizno = (parseInt(searchArray[1]))+1
+                        window.location.href = path+searchArray[0]+"quizno="+quizno;
+                    </script>
+                <?php
+            } else {
+                mysqli_query($db, "INSERT INTO examsession VALUES (NULL,'$suname', '$examid','done') ") or die(mysqli_error($db));
+                ?>
+                    <script type="text/javascript">
+                        window.location.href = "results.php";
+                    </script>
+                <?php
+            }
         }
     }
 ?>

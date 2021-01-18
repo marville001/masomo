@@ -91,7 +91,7 @@
                         $multquizrows = mysqli_num_rows($multquizres);    
                     ?>
                         <h6>There are <? echo $multquizrows ?> questions in this test</h6>
-                        <button class="btn btn-outline-success my-3">Start  Exam</button>
+                        <a href="examsession.php?classid=<? echo $_GET['classid']?>&examid=<? echo $_GET['examid']?>" class="btn btn-outline-success my-3">Start  Exam</a>
                     <?php endif?>
                  
 
