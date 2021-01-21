@@ -85,10 +85,11 @@
 </div>
 <div class="exam-container">
     <?php
-        if(!isset($_GET["quizno"])):        
+        if(!isset($_GET["quizno"])):
+            $quizesrow = mysqli_num_rows(mysqli_query($db, "select * from questions where examid = $examid"));        
     ?>
         <div class="exam-content">
-            <h3>The exam has a total of 20 questions</h3>
+            <h3>The exam has a total of <?php echo 0; ?> questions</h3>
             <a href="examsession.php?classid=<?php echo $_GET["classid"]?>&examid=<?php echo $exams["id"]?>&quizno=1" class="btn btn-outline-success m-5">Start Answering</a>
         </div>
     <?php 

@@ -63,3 +63,6 @@
         header('Location: classes.php');
    }
 ?>
+
+<?php include "includes/modals.php"?> 
+<?php include "includes/footer.php"?> 

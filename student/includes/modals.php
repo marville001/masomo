@@ -52,3 +52,29 @@
     </div>
   </div>
 </div>
+
+<!-- Submit Exam Answers Modal-->
+<div class="modal fade" id="modalInviteParent" tabindex="-1" role="dialog" aria-labelledby="modalInviteParentLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalInviteParentLabel">Connect with your Parent</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="POST" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Enter the parents email</label>
+            <input required type="email" name="parentemail" placeholder=""    class="form-control"/>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" name="connectToParentSubmit" class="btn btn-primary">Add Parent</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

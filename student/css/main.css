@@ -78,7 +78,11 @@
     font-size: 20px;
     
 }
-.menus h2 a{
+.menus h6{
+    margin: 40px 10px;
+}
+.menus h2 a,
+.menus h a{
     color: #212529;
     letter-spacing: 2px;
 }

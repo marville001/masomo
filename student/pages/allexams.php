@@ -37,10 +37,12 @@
                 </thead>
                 <tbody>
                     <?php if($examsrows > 0){
+                        $count = 0;
                     while($examsarray = mysqli_fetch_array($examsres)){    
+                        $count+=1;
                     ?>
                     <tr>
-                        <th scope="row"><?php echo $examsarray['id'] ?></th>
+                        <th scope="row"><?php echo $count ?></th>
                         <td><?php echo $examsarray['name'] ?></td>
                         <td><?php echo $examsarray['type'] ?></td>
                         <td><?php echo $examsarray['date'] ?></td>

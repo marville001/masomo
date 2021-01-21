@@ -30,6 +30,7 @@
                 <h2><a href="exams.php?classid=<?php echo $_GET['classid']?>">Exams</a></h2>
                 <h2><a href="revmaterials.php?classid=<?php echo $_GET['classid']?>">Revision Materials</a></h2>
                 <h2><a href="members.php?classid=<?php echo $_GET['classid']?>">Members</a></h2>
+                <h6><button class="btn btn-primary" data-toggle="modal" data-target="#modalInviteParent">Connect to Parent</button></h6>
             </div>
         </div>
     </div>
