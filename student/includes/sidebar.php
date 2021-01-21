@@ -26,7 +26,7 @@
                 ?>            
             </div>
             <div class="menus">
-                <h2><a href="assignments.php?classid=<?php echo $_GET['classid']?>">Assignments</a></h2>
+                <!-- <h2><a href="assignments.php?classid=<?php echo $_GET['classid']?>">Assignments</a></h2> -->
                 <h2><a href="exams.php?classid=<?php echo $_GET['classid']?>">Exams</a></h2>
                 <h2><a href="revmaterials.php?classid=<?php echo $_GET['classid']?>">Revision Materials</a></h2>
                 <h2><a href="members.php?classid=<?php echo $_GET['classid']?>">Members</a></h2>

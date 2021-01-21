@@ -34,6 +34,27 @@
                     <div class="wrapper">
                         <h4>Assignments</h4>
                         <hr>
+                        <?php
+                            $revmres = mysqli_query($db, "select * from revisionmaterials where classid=$jclass[classid]");
+                            $revmrows= mysqli_num_rows($revmres);
+                            if($revmrows > 0){
+                            $count = 0;
+                            while($row = mysqli_fetch_array($revmres)){
+                            $count +=1;
+                        ?>
+
+                        <div class="card card-body p-3 mb-3">
+                            <p><?php echo $count ?></p>
+                            <p><?php echo $row['description'] ?></p>
+                            <div class="jumbotron p-2 mb-0">
+                                <a href="/masomo/uploads/<?php echo $row['file'] ?>"><?php echo $row['file'] ?></a>
+                            </div>
+                        </div>
+                        <?php } }else{ ?>
+                            <div class="card card-body">
+                                <h3>No revision material uploaded yet..</h3>
+                            </div>
+                        <?php } ?>
                     </div>
                 <?php endif ?>
             </div>

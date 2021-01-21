@@ -28,6 +28,15 @@
         $quizres = mysqli_query($db, "select * from questions where examid = $examid and question_no = $quizno");
         $quizesrow = mysqli_num_rows(mysqli_query($db, "select * from questions where examid = $examid"));
         $quiz = mysqli_fetch_array($quizres);
+
+        if($quizesrow < 1){
+        ?>
+            <script type="text/javascript">
+            alert("No question found");
+                window.location.href = "exams.php?classid=<? echo $_GET['classid']?>&examid=<? echo $_GET['examid']?>";
+            </script>
+        <?php
+    }
     }
 ?>
 
