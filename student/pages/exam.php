@@ -12,6 +12,9 @@
 
     $diff_hours = ($duedate- $now)/3600;
     $diff_days = $diff_hours/24;
+
+    $answwercheckresult = mysqli_query($db, "select * from answers_upload where uname='$suname' and classid=$_GET[classid] and exam_id=$_GET[examid]");
+    $answwercheckrows = mysqli_num_rows($answwercheckresult);
 ?>
 
 <div class="home-content">
@@ -50,16 +53,68 @@
                         </div>    
                         <div class="jumbotron m-2 p-4">
                             <?php
-                                $answwercheckresult = mysqli_query($db, "select * from answers_upload where uname='$suname' and classid=$_GET[classid] and exam_id=$_GET[examid]");
-                                $answwercheckrows = mysqli_num_rows($answwercheckresult);
+                                
                                 if($answwercheckrows < 1):
                             ?>
                                 <button data-toggle="modal" data-target="#submitExamModal" class="btn btn-primary">Submit Answers</button>
                             <?php else:?>
-                            <?php
-                                $answwercheckarray = mysqli_fetch_array($answwercheckresult);                            
-                            ?>
-                            <h4>Answers submitted</h4>
+                                <?php
+                                    $answwercheckarray = mysqli_fetch_array($answwercheckresult);                            
+                                ?>
+                                <h4>Answers submitted</h4>
+                                <h6>Date : <?php echo $answwercheckarray['time'] ?></h6>
+                                <h4>Score : 
+                                    <span class="text-success">
+                                        <?php 
+                                            if($answwercheckarray['score'] != null){
+                                                echo $answwercheckarray['score'];
+                                            }else{
+                                                echo "No score yet";
+                                            } 
+                                        ?>
+                                    </span>
+                                </h4>
+                                <h4 class="mt-4">Teachers Comment</h4>
+                                <p>
+                                    <span class="text-dark">
+                                    <?php 
+                                        if($answwercheckarray['teachers_comment'] != null){
+                                            echo "<i>\"".$answwercheckarray['teachers_comment']."\"</i>";
+                                        }else{
+                                            echo "No Comment yet";
+                                        } 
+                                        ?>
+                                    </span>
+                                </p>
+                            <?php endif?>
+                        </div>  
+                    <?php else:
+                        $multquizres = mysqli_query($db, "select * from questions where examid=$_GET[examid]");
+                        $multquizrows = mysqli_num_rows($multquizres); 
+                        $manswwercheckresult = mysqli_query($db, "select * from answers where uname='$suname' and exam_id=$_GET[examid]");
+                        $manswwercheckrows = mysqli_num_rows($manswwercheckresult);  
+                        
+                        if($manswwercheckrows == 0):
+                    ?>     
+                            <h6>There are <? echo $multquizrows ?> questions in this test</h6>
+                            <a href="examsession.php?classid=<? echo $_GET['classid']?>&examid=<? echo $_GET['examid']?>" class="btn btn-outline-success my-3">Start  Exam</a>                    
+                        <?php else: ?>
+                        <div class="jumbotron p-5">
+                            <h4>Answered</h4>
+                            <a href="results.php?classid=<? echo $_GET['classid']?>&examid=<? echo $_GET['examid']?>" class="btn btn-success">View Results</a>
+                        </div>
+                        <?php endif?>
+                    <?php endif?>
+                 
+
+                    
+                <?php elseif($diff_days < 0):?>
+                    <div class="jumbotron pt-4">
+                        <?php if($answwercheckrows > 0): ?>   
+                        <?php
+                            $answwercheckarray = mysqli_fetch_array($answwercheckresult);                            
+                        ?>
+                            <h4 class="mb-4">Answered</h4> 
                             <h6>Date : <?php echo $answwercheckarray['time'] ?></h6>
                             <h4>Score : 
                                 <span class="text-success">
@@ -83,21 +138,12 @@
                                     } 
                                     ?>
                                 </span>
-                            </p>
-                        </div>  
-                        <?php endif?>
-                    <?php else:
-                        $multquizres = mysqli_query($db, "select * from questions where examid=$_GET[examid]");
-                        $multquizrows = mysqli_num_rows($multquizres);    
-                    ?>
-                        <h6>There are <? echo $multquizrows ?> questions in this test</h6>
-                        <a href="examsession.php?classid=<? echo $_GET['classid']?>&examid=<? echo $_GET['examid']?>" class="btn btn-outline-success my-3">Start  Exam</a>
-                    <?php endif?>
-                 
-
-                    
-                <?php elseif($diff_days < 0):?>
-                    <h3>Timed Out</h3>              
+                            </p>          
+                        <?php else: ?>  
+                            <h4 class="m-4">Timed Out</h4>
+                            <h4 class="m-4">No answer given</h4>            
+                        <?php endif ?>              
+                    </div>
                 <?php else:?>
                     <h3 >The exam will be in <? echo $diff_days?> days</h3>              
                 <?php endif?>              
