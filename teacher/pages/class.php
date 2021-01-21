@@ -165,7 +165,7 @@
       } else {
           // move the uploaded (temporary) file to the specified destination
           if (move_uploaded_file($file, $destination)) {
-              $sql = "INSERT INTO revisionmaterials (file, description,classid) VALUES ('$filename', '$description','$_GET[classid]')";
+              $sql = "INSERT INTO revisionmaterials (file, description,classid,lecid) VALUES ('$filename', '$description','$_GET[classid]','$lecid')";
               $queried = mysqli_query($db, $sql) or die(mysqli_error($db));
               if ($queried) {
                   ?>
