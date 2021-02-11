@@ -12,10 +12,10 @@
             <div class="col-lg-12">
                 <div class="card">
                     <?php
-                        $multexamres = mysqli_query($db,"select * from exam_category where classid= '$classid' and id = '$examid' ");
+                        $multexamres = mysqli_query($db,"select * from exams where classid= '$classid' and id = '$examid' ");
                         $multexamarray = mysqli_fetch_array($multexamres);
                     ?>
-                    <div class="card-header"><strong><?php echo $multexamarray['title'] ?> Results</strong></div>
+                    <div class="card-header"><strong><?php echo $multexamarray['name'] ?> </strong>Results</div>
                     <!-- CArd Body -->
                     <div class="card-body">
                         <!-- Add Exam Catogory -->

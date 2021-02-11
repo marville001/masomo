@@ -238,3 +238,35 @@
     </div>
   </div>
 </div>
+
+<!-- Modal To Mark Uploaded Exams -->
+<div class="modal fade" id="exammark" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mark Student Exam</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="POST" enctype="multipart/form-data">
+      <div class="modal-body">
+        <div class="col-md-12">
+        <div class="form-group">
+            <label>Score</label>
+            <input required type="number" min=0 name="examresultscore" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Comment</label>
+            <textarea required name="examresultcomment" class="form-control" placeholder="Enter comment..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="exammarkssubmit" class="btn btn-primary">Mark Exam</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

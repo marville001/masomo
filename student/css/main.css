@@ -65,7 +65,7 @@
     display: none;
 }
 .my-classes.show{
-    display: block;
+    display: flex;
 }
 
 .menus{
@@ -76,6 +76,7 @@
 .menus h2{
     margin: 10px;
     font-size: 20px;
+    width: 100%;
     
 }
 .menus h6{

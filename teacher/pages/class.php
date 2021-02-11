@@ -7,13 +7,14 @@
 <?php include "includes/config.php"?> 
 <div class="breadcrumbs">
         <div class="col-sm-4">
-          <div class="page-header float-left">
+          <div class="page-header">
             <div class="page-title">
             <?php
                 $cres = mysqli_query($db, "select * from classes where id = '$classid'");
                 $crow = mysqli_fetch_array($cres);
             ?>
               <h1 class="text-primary h1"><strong><?php echo $crow['name'] ?></strong></h1>
+              <h6 style="margin:10px 0px">Joining Code : <?php echo $crow['joincode'] ?></h6>
             </div>
           </div>
         </div>
@@ -62,18 +63,23 @@
                                                     <td><?php echo $row['date']; ?></td>
                                                     <td><?php echo $row['description']; ?></td>
                                                     <?php
-                                                        $answerresults = mysqli_query($db,"select distinct uname from answers where exam_id = '$row[id]' ") or die(mysqli_error($db));
-                                                        $answersrows = mysqli_num_rows($answerresults);
-                                                        
-                                                        ?>
-                                                    <td><?php echo $answersrows; ?></td>
+                                                        if($row["type"]=="multiple"):
+                                                            $answerresults = mysqli_query($db,"select distinct uname from answers where exam_id = '$row[id]' ") or die(mysqli_error($db));
+                                                            $answersrows = mysqli_num_rows($answerresults); 
+                                                    ?>
+                                                            <td><?php echo $answersrows; if($answersrows >= 1){?><a class="ml-2 text-primary" href="results.php?classid=<?php echo $classid?>&examid=<?php echo $row['id'] ?>&mult=true">View</a> <?php } ?></td>
+                                                        <?php else: 
+                                                                $uploadanswerresult =  mysqli_query($db,"select uname from answers_upload where exam_id = '$row[id]' ") or die(mysqli_error($db));
+                                                                $uploadanswersrows = mysqli_num_rows($answerresults); 
+                                                            
+                                                            ?>
+                                                            <td><?php echo $uploadanswersrows; if($uploadanswersrows >= 1){?><a class="ml-2 text-primary" href="results.php?classid=<?php echo $classid?>&examid=<?php echo $row['id'] ?>&mult=false">View</a> <?php } ?></td>
+                                                        <?php endif ?>
                                                     <td><a href="exam_edit.php?id=<?php echo $row['id']; ?>">Edit</a></td>
                                                     <td><a href="exam_delete.php?id=<?php echo $row['id']; ?>">Delete</a></td>
                                                     <td><a href="exam_manage.php?classid=<?php echo $_GET['classid']; ?>&examid=<?php echo $row['id']; ?>">View</a></td>
                                                 </tr>
-                                                <?php
-                                            }
-                                        ?>
+                                            <?php } ?>
                                         
                                     </tbody>
                                 </table>

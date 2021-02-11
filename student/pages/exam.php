@@ -101,7 +101,7 @@
                         <?php else: ?>
                         <div class="jumbotron p-5">
                             <h4>Answered</h4>
-                            <a href="results.php?classid=<? echo $_GET['classid']?>&examid=<? echo $_GET['examid']?>" class="btn btn-success">View Results</a>
+                            <a href="results.php?classid=<?php echo $_GET['classid']?>&examid=<? echo $_GET['examid']?>" class="btn btn-success">View Results</a>
                         </div>
                         <?php endif?>
                     <?php endif?>

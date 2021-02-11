@@ -141,9 +141,9 @@ if(isset($_SESSION['lecid'])){
                                         <div class="jumbotron" style="padding:20px;margin-top:20px">
                                         <a style="text-decoration:underline" target="_blank" href="../uploads/<?php echo $uploadedexam['file']?>" > <?php echo $uploadedexam['file'] ?></a>
                                         <h6 class="mt-2">Instructions</h6>
-                                        <p><?php echo $uploadedexam['instructions'] ?></p>
+                                        <p><?php echo $uploadedexam['instructions']; ?></p>
                                         </div>
-                                    <?}?>
+                                    <?php }?>
                                 <?php endif?>                              
                             </div>                                
                         </div>                                

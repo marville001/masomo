@@ -1,4 +1,4 @@
-<?php include "includes/config.php"?> 
+<?php include "includes/config.php" ?> 
 <?php
     session_start();
     if(!isset($_SESSION['username']) ){
@@ -12,24 +12,23 @@
 ?>
 
 <?php include "includes/header2.php"?> 
-<?php 
-   if(isset($_GET['classid'])){?>   
+<?php if(isset($_GET['classid'])){ ?>   
         <div class="home">
             <?php include "includes/sidebar.php"?>
             <div class="home-content">
-                <?php if($jcrows <=0 ): ?>
+                <?php if($jcrows <=0 ){ ?>
                     <div class="members-title">
                         <h3>No Class Found</h3>
                     </div>
-                <?php else:?>
+                <?php }else{ ?>
                     <?php
                         $jclass = mysqli_fetch_array($jcres);
                         $classresult = mysqli_query($db, "select * from classes where id=$jclass[classid]");
                         $class= mysqli_fetch_array($classresult);
                     ?>
                     <div class="members-title">
-                        <h1><?php echo $class['code'] ?></h1>
-                        <h5><?php echo $class['name'] ?></h5>
+                        <h1><?php echo $class['code']; ?></h1>
+                        <h5><?php echo $class['name']; ?></h5>
                     </div>
                     <div class="wrapper">
                         <h4>Members</h4>
@@ -45,12 +44,12 @@
                                         <h6><?php echo $srow['firstname'] . " ".  $srow['lastname']?></h6>
                                     </div>                                
                                  <hr>
-                           <?php }}?>
+                           <?php }} ?>
                     </div>
-                <?php endif ?>
+                <?php } ?>
             </div>
         </div>
-   <?}else{
+   <?php }else{
         header('Location: classes.php');
    }
 ?>

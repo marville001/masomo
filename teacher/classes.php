@@ -19,7 +19,7 @@ if(isset($_SESSION['lecid'])){
             include("pages/no_class.php"); 
         }
    }else{
-        include("pages/no_class.php");
+    header('Location: index.php');
    }
 
 

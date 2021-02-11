@@ -3,7 +3,7 @@
    $examid = $_GET['examid'];    
    $uname = $_GET['uname']; 
 
-   $quizres = mysqli_query($db,"select * from questions where examid = '$examid' ") or die(mysqli_error($db));
+   $quizres = mysqli_query($db,"select * from answers where exam_id = '$examid' ") or die(mysqli_error($db));
    $quizrows = mysqli_num_rows($quizres); 
    
    $studentres = mysqli_query($db,"select * from students where username='$uname' ") or die(mysqli_error($db));
@@ -22,10 +22,10 @@
             <div class="col-lg-12">
                 <div class="card">
                     <?php
-                        $multexamres = mysqli_query($db,"select * from exam_category where classid= '$classid' and id = '$examid' ") or die(mysqli_error($db));
+                        $multexamres = mysqli_query($db,"select * from exams where classid= '$classid' and id = '$examid' ") or die(mysqli_error($db));
                         $multexamarray = mysqli_fetch_array($multexamres);
                     ?>
-                    <div class="card-header"><h2><strong><?php echo $multexamarray['title'] ?> Results</strong></h2>
+                    <div class="card-header"><h2><strong><?php echo $multexamarray['name'] ?> Results</strong></h2>
                     <!-- CArd Body -->
                     <div class="card-body bg-white my-2">
                         <div>
@@ -68,7 +68,7 @@
                                     <h6>Answer given : <strong><?php echo $row['answer'] ?></strong></h6>
                                     <?php if($row['correct']==1):?>
                                         <h2><span class="text-success">&check;</span></h2>
-                                    <? else: ?>
+                                    <?php else: ?>
                                         <h2><span class="text-danger">&times;</span></h2>
                                     <?php endif ?>
                                 </div>

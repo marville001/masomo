@@ -61,8 +61,8 @@
             <li class="menu-item-has-children active dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Exam</a>
                 <ul class="sub-menu children dropdown-menu">
-                    <li><i class="menu-icon fa fa-th"></i><a href="classes.php?classid=<?php echo $_SESSION['classid'];?>">Add Exam</a></li>
-                    <li><i class="menu-icon fa fa-th"></i><a href="exam_manage.php">Manage Exam</a></li>
+                    <li><i class="menu-icon fa fa-th"></i><a href="classes.php?classid=<?php echo $_GET['classid']; ?>">Add Exam</a></li>
+                    <li><i class="menu-icon fa fa-th"></i><a href="exam_manage.php?classid=<?php echo $_GET['classid']; ?>">Manage Exam</a></li>
                 </ul>
             </li>            
             <li>

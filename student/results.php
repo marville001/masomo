@@ -36,7 +36,7 @@
                 <?php endif ?>
             </div>
         </div>
-   <?}else{
+   <?php }else{
         header('Location: classes.php');
    }
 ?>

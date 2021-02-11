@@ -20,7 +20,7 @@
                         $classresult = mysqli_query($db, "select * from classes where id=$row[classid]");
                         $jclass= mysqli_fetch_array($classresult);
                         ?>
-                        <a href="classes.php?classid=<?php echo $jclass['id']?>"><?php echo $jclass['name'] ?></a>
+                        <h6><a href="classes.php?classid=<?php echo $jclass['id']?>"><?php echo $jclass['name'] ?></a></h6>
                         <?php
                     }
                 ?>            
