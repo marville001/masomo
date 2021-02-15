@@ -12,17 +12,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Login</title>
-    <meta name="description" content="">
+    <meta name="description" content="Student Portal">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-	<div class="error-pagewrap">
+	<div class="error-pagewrap mt-5">
 		<div class="error-page-int">
 			<div class="text-center m-b-md custom-login">
 				<h3>Student Login</h3>

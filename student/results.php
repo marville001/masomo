@@ -6,8 +6,19 @@
     }
     $suname = $_SESSION['username'];
 
-     $jcres = mysqli_query($db, "select * from joinedclasses where classid=$_GET[classid] AND suname = '$suname'");
+    // Exams
+    $examsres = mysqli_query($db, "select * from exams where classid = '$_GET[classid]' and id = '$_GET[examid]'");
+    $examsrows = mysqli_num_rows($examsres);
+    $examsarray = mysqli_fetch_array($examsres);
+
+    $jcres = mysqli_query($db, "select * from joinedclasses where classid=$_GET[classid] AND suname = '$suname'");
     $jcrows = mysqli_num_rows($jcres); 
+
+    $multquizres = mysqli_query($db, "select * from questions where examid=$_GET[examid]");
+    $multquizrows = mysqli_num_rows($multquizres); 
+    $manswwercheckresult = mysqli_query($db, "select * from answers where uname='$suname' and exam_id=$_GET[examid]");
+    $manswwercheckrows = mysqli_num_rows($manswwercheckresult);
+    $manswwerarray = mysqli_fetch_array($manswwercheckresult);
 ?>
 
 <?php include "includes/header2.php"?> 
@@ -31,7 +42,28 @@
                         <h5><?php echo $class['name'] ?></h5>
                     </div>
                     <div class="wrapper">
-                        <h2>Exam Name</h2>
+                        <h2> Exam - <?php echo $examsarray['name'] ?></h2>
+                        <hr>
+                        <div class="jumbotron p-3">
+                            <h5>Score: 20 / 30</h5>
+
+                            <?php
+                                $commentresult = mysqli_query($db, "SELECT * FROM `exam_mult_comments` where examid= '$_GET[examid]'");
+                                $commentrow = mysqli_num_rows($commentresult);
+                                $commentarray =mysqli_fetch_array($commentresult);
+                            ?>
+                            <p>
+                                Teachers Comment: 
+                                <?php 
+                                    if($commentrow >=1){
+                                        ?>
+                                            <i>"<?php echo $commentarray['comment'];?>"</i>
+                                        <?php
+                                    }else{ 
+                                        echo "No comment yet";
+                                    }?>
+                            </p>
+                        </div>
                     </div>
                 <?php endif ?>
             </div>

@@ -96,12 +96,12 @@
                     <?php else:
                         if($manswwercheckrows == 0):
                     ?>     
-                            <h6>There are <? echo $multquizrows ?> questions in this test</h6>
-                            <a href="examsession.php?classid=<? echo $_GET['classid']?>&examid=<? echo $_GET['examid']?>" class="btn btn-outline-success my-3">Start  Exam</a>                    
+                            <h6>There are <?php echo $multquizrows ?> questions in this test</h6>
+                            <a href="examsession.php?classid=<?php echo $_GET['classid']?>&examid=<?php echo $_GET['examid']?>" class="btn btn-outline-success my-3">Start  Exam</a>                    
                         <?php else: ?>
                         <div class="jumbotron p-5">
                             <h4>Answered</h4>
-                            <a href="results.php?classid=<?php echo $_GET['classid']?>&examid=<? echo $_GET['examid']?>" class="btn btn-success">View Results</a>
+                            <a href="results.php?classid=<?php echo $_GET['classid']?>&examid=<?php echo $_GET['examid']?>" class="btn btn-success">View Results</a>
                         </div>
                         <?php endif?>
                     <?php endif?>
@@ -158,12 +158,12 @@
                         <?php else: ?>
                         <div class="jumbotron p-5">
                             <h4>Answered</h4>
-                            <a href="results.php?classid=<? echo $_GET['classid']?>&examid=<? echo $_GET['examid']?>" class="btn btn-success">View Results</a>
+                            <a href="results.php?classid=<?php echo $_GET['classid']?>&examid=<?php echo $_GET['examid']?>" class="btn btn-success">View Results</a>
                         </div>
                         <?php endif?>
                     <?php endif?>
                 <?php else:?>
-                    <h3 >The exam will be in <? echo $diff_days?> days</h3>              
+                    <h3 >The exam will be in <?php echo $diff_days?> days</h3>              
                 <?php endif?>              
             </div>
         <?php endif ?>
